@@ -16,6 +16,7 @@ class SeminarController extends BaseController {
 			$seminar->point3 = $input['point3'];
 			$seminar->point4 = $input['point4'];
 			$seminar->save();
+
 			$return = array(
 				'success' => 1,
 				'seminar' => $seminar
@@ -23,7 +24,8 @@ class SeminarController extends BaseController {
 			return $return;
 		} catch (Exception $e) {
 			$return = array(
-				'success' => 0
+				'success' => 0,
+				'error' => $e->getMessage()
 				);
 			return $return;			
 		}
@@ -38,6 +40,15 @@ class SeminarController extends BaseController {
 		{
 			$list[] = array(
 				'seminar' => $seminar
+				);
+		}
+
+
+		$seminars = SeminarUser::where('user_id', '=', $user->id)->get();
+		foreach($seminars as $seminar)
+		{
+			$list[] = array(
+				'seminar' => Seminar::find($seminar->seminar_id)
 				);
 		}
 		return $list;
@@ -79,17 +90,35 @@ class SeminarController extends BaseController {
 
 	}
 
-	public function jclass()
+	public function search()
 	{
-		$user = Sentry::getUser();
-		$seminars = SeminarUser::where('user_id', '=', $user->id)->get();
-		$list = array();
-		foreach($seminars as $seminar)
-		{
-			$list[] = array(
-				'seminar' => Seminar::find($seminar->seminar_id)
-				);
+		try {
+			$input = Input::all();
+			$results = Seminar::where('title', 'like', '%'.$input['q'].'%')->get();
+			$infoArray = array();
+			foreach($results as $result)
+			{
+				$infoArray[] = array(
+					'seminar' => $result
+					);
+			}
+			if(empty($infoArray))
+			{
+				$return = array(
+					'success' => 0,
+					'message' => 'No results found'
+					);
+				return $return;
+			}
+			return $infoArray;
+			
+		} catch (Exception $e) {
+			$return = array(
+				'success' => 0,
+ 				);
+			return $return;
+			
 		}
-		return $list;
 	}
+	
 }

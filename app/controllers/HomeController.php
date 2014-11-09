@@ -15,6 +15,11 @@ class HomeController extends BaseController {
 	|
 	*/
 
+	public function vRegister()
+	{
+		return View::make('splash.index');
+	}
+
 	public function register()
 	{
 		$input = Input::all();

@@ -22,6 +22,7 @@
 */
 
 Route::any('/', 'HomeController@register');
+Route::any('/v', 'HomeController@vRegister');
 
 /*
 	
@@ -58,8 +59,8 @@ Route::any('/seminar/{seminar_id}', 'SeminarController@joinSeminar');
 /*
 
 	@author Noah Gansallo
-	@title Created Class list
-	@description Get the list of classes that the user has created
+	@title All class list
+	@description Get the list of classes that the user has any relation to
 
 */
 
@@ -68,9 +69,14 @@ Route::any('/cclass', 'SeminarController@cclassList');
 /*
 
 	@author Noah Gansallo
-	@title Joined Class list
-	@description Get the list of classes that the user has joined
+	@title Search
+	@description Search for classes
+	@parameters: q
 
 */
 
-Route::any('/jclass', 'SeminarController@jclass');
+Route::any('/search', 'SeminarController@search');
+
+
+
+
