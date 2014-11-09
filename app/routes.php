@@ -92,7 +92,7 @@ Route::any('/detail/{seminar_id}', 'SeminarController@detail');
 	@author Noah Gansallo
 	@title Check
 	@description Checking to see if the user is in the specified area
-	@parameters: point1, point2
+	@parameters: point1
 
 */
 

@@ -140,7 +140,10 @@ class SeminarController extends BaseController {
 
 	public function check($seminar_id)
 	{
-		
+		$input = Input::all();
+		$seminar = Seminar::find($seminar_id);
+		$point1 = explode(':', $seminar->point1);
+		dd($point1);
 	}
 	
 }
