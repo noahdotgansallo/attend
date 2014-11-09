@@ -64,3 +64,13 @@ Route::any('/seminar/{seminar_id}', 'SeminarController@joinSeminar');
 */
 
 Route::any('/cclass', 'SeminarController@cclassList');
+
+/*
+
+	@author Noah Gansallo
+	@title Joined Class list
+	@description Get the list of classes that the user has joined
+
+*/
+
+Route::any('/jclass', 'SeminarController@jclass');
