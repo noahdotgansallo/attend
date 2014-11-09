@@ -21,4 +21,15 @@
 
 */
 
-Route::get('/', 'HomeController@register');
+Route::any('/', 'HomeController@register');
+
+/*
+	
+	@author Noah Gansallo
+	@title Login
+	@description Logging in a user
+	@parameters: email, password
+
+*/
+
+Route::any('/', 'HomeController@login');

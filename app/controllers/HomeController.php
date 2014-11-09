@@ -18,6 +18,32 @@ class HomeController extends BaseController {
 	public function register()
 	{
 		$input = Input::all();
+
+		try {
+			$user = Sentry::register(array(
+		        'email'    => $input['email'],
+		        'password' => $input['password'],
+		        'first_name' => $input['firstName'],
+		        'last_name' => $input['lastName'],
+		        'activated' => 1,
+		    ));
+
+		    $return = array(
+		    	'success' => 1
+		    	);
+		    return $return;
+			
+		} catch (Exception $e) {
+			$return = array(
+				'success' => 0
+				);
+			return $return;
+			
+		}
+	}
+
+	public function login()
+	{
 		
 	}
 
