@@ -47,6 +47,12 @@ class HomeController extends BaseController {
 		}
 	}
 
+	public function vLogin()
+	{
+		return View::make('splash.login');
+	}
+
+
 	public function login()
 	{
 

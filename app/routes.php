@@ -34,6 +34,9 @@ Route::any('/v', 'HomeController@vRegister');
 */
 
 Route::any('/login', 'HomeController@login');
+Route::any('/vlogin', 'HomeController@vLogin');
+Route::any('/v/handler/login', 'HomeViewController@handleViewLogin');
+Route::any('/logout', 'HomeViewController@logout');
 
 /*
 	
@@ -65,6 +68,7 @@ Route::any('/seminar/{seminar_id}', 'SeminarController@joinSeminar');
 */
 
 Route::any('/cclass', 'SeminarController@cclassList');
+Route::any('/dashboard', 'HomeViewController@dashboard');
 
 /*
 
@@ -86,16 +90,17 @@ Route::any('/search', 'SeminarController@search');
 */
 
 Route::any('/detail/{seminar_id}', 'SeminarController@detail');
+Route::any('/detailv/{seminar_id}', 'HomeViewController@detailClass');
 
 /*
 
 	@author Noah Gansallo
 	@title Check
 	@description Checking to see if the user is in the specified area
-	@parameters: point1
+	@parameters: point
 
 */
 
-Route::any('/check/{seminar_id}', 'SeminarController@check');
+Route::any('/check', 'SeminarController@check');
 
 

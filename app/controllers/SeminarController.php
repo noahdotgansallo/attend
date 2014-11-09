@@ -129,21 +129,91 @@ class SeminarController extends BaseController {
 		$userArray = array();
 		foreach($joins as $join)
 		{
+			$point = explode(':', $join->lastSeen);
+			$points = array(
+				'1' => explode(':', $seminar->point1),
+				'2' => explode(':', $seminar->point2),
+				'3' => explode(':', $seminar->point3),
+				'4' => explode(':', $seminar->point4)
+			);
 
+			if($point[0] >= $points[1][0] || $point[1] >= $points[1][1])
+			{
+				if($point[0] <= $points[2][0] || $point[1] >= $points[2][1])
+				{
+					if($point[0] <= $points[3][0] || $point[1] <= $points[3][1])
+					{
+						if($point[0] >= $points[4][0] || $point[1] <= $points[4][1])
+						{
+							$join->status = 1;
+							$join->save();
+						} else{
+							$join->status = 0;
+							$join->save();
+						}
+
+					} else{
+						$join->status = 0;
+						$join->save();
+					}
+				} else{
+					$join->status = 0;
+					$join->save();
+				}
+
+			} else{
+				$join->status = 0;
+				$join->save();
+			}
+			$user = User::find($join->user_id);
 			$userArray[] = array(
-				'join' => $join,
-				'user' => User::find($join->user_id)
+				'name' => $user->first_name.' '.$user->last_name,
+				'status' => $join->status
 				);
 		}
 		return $userArray;
 	}
 
-	public function check($seminar_id)
+	public function check()
 	{
 		$input = Input::all();
-		$seminar = Seminar::find($seminar_id);
-		$point1 = explode(':', $seminar->point1);
-		dd($point1);
+		$user = Sentry::getUser();
+		$seminarUser = SeminarUser::where('user_id', '=', $user->id)->get();
+		foreach($seminarUser as $join)
+		{
+			$join->lastSeen = $input['point'];
+			$join->save();
+			$seminar = Seminar::find($join->seminar_id);
+			$points = array(
+				'1' => explode(':', $seminar->point1),
+				'2' => explode(':', $seminar->point2),
+				'3' => explode(':', $seminar->point3),
+				'4' => explode(':', $seminar->point4)
+			);
+
+			$point = explode(':', $input['point']);
+
+			if($point[0] >= $points[1][0] || $point[1] >= $points[1][1])
+			{
+				if($point[0] <= $points[2][0] || $point[1] >= $points[2][1])
+				{
+					if($point[0] <= $points[3][0] || $point[1] <= $points[3][1])
+					{
+						if($point[0] >= $points[4][0] || $point[1] <= $points[4][1])
+						{
+							$join->status = 1;
+							$join->save();
+						}
+					}
+				}
+			} else{
+				$join->status = 0;
+				$join->save();
+				return $join->status;
+			}
+
+
+		}
 	}
 	
 }
