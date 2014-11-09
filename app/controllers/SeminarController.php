@@ -92,9 +92,9 @@ class SeminarController extends BaseController {
 
 	public function search()
 	{
+		$input = Input::all();
 		try {
-			$input = Input::all();
-			$results = Seminar::where('title', 'like', '%'.$input['q'].'%')->get();
+			$results = Seminar::where('name', 'like', '%'.$input['q'].'%')->get();
 			$infoArray = array();
 			foreach($results as $result)
 			{
@@ -115,10 +115,32 @@ class SeminarController extends BaseController {
 		} catch (Exception $e) {
 			$return = array(
 				'success' => 0,
+				'message' => $e->getMessage()
  				);
 			return $return;
 			
 		}
+	}
+
+	public function detail($seminar_id)
+	{
+		$seminar = Seminar::find($seminar_id);
+		$joins = SeminarUser::where('seminar_id', '=', $seminar_id)->get();
+		$userArray = array();
+		foreach($joins as $join)
+		{
+
+			$userArray[] = array(
+				'join' => $join,
+				'user' => User::find($join->user_id)
+				);
+		}
+		return $userArray;
+	}
+
+	public function check($seminar_id)
+	{
+		
 	}
 	
 }

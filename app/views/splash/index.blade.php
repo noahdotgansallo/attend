@@ -40,20 +40,17 @@
 				<p>Making GPS technology work for you</p>
 				<ul class="actions">
 					<li><a href="#cta" class="button special">Sign Up</a></li>
-					<li><a href="#" class="button">Learn More</a></li>
+					<li><a href="#learnmore" class="button">Learn More</a></li>
 				</ul>
 			</section>
 
 		<!-- Main -->
 			<section id="main" class="container">
 		
-				<section class="box special">
+				<section class="box special" id="learnmore">
 					<header class="major">
-						<h2>Introducing the ultimate mobile app
-						<br />
-						for doing stuff with your phone</h2>
-						<p>Blandit varius ut praesent nascetur eu penatibus nisi risus faucibus nunc ornare<br />
-						adipiscing nunc adipiscing. Condimentum turpis massa.</p>
+						<h2>Introducing the ultimate attendance app</h2>
+						<p>Having GPS do all the work in attendance</p>
 					</header>
 					<span class="image featured"><img src="images/map.jpg" alt="" /></span>
 				</section>
@@ -61,9 +58,8 @@
 				<section class="box special features">
 					<div class="features-row">
 						<section>
-							<span class="icon major fa-bolt accent2"></span>
-							<h3>Magna etiam</h3>
-							<p>Integer volutpat ante et accumsan commophasellus sed aliquam feugiat lorem aliquet ut enim rutrum phasellus iaculis accumsan dolore magna aliquam veroeros.</p>
+							<span class="icon major fa-location-arrow accent2"></span>
+							<h3>GPS Support</h3>
 						</section>
 						<section>
 							<span class="icon major fa-area-chart accent3"></span>

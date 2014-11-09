@@ -77,6 +77,25 @@ Route::any('/cclass', 'SeminarController@cclassList');
 
 Route::any('/search', 'SeminarController@search');
 
+/*
 
+	@author Noah Gansallo
+	@title Detail
+	@description Live updates of people's locations
+
+*/
+
+Route::any('/detail/{seminar_id}', 'SeminarController@detail');
+
+/*
+
+	@author Noah Gansallo
+	@title Check
+	@description Checking to see if the user is in the specified area
+	@parameters: point1, point2
+
+*/
+
+Route::any('/check/{seminar_id}', 'SeminarController@check');
 
 
