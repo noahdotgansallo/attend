@@ -44,7 +44,33 @@ class HomeController extends BaseController {
 
 	public function login()
 	{
-		
+
+		$input = Input::all();
+
+			$credentials = array(
+				'email' => $input['email'],
+				'password' => $input['password']
+			);
+			$user = Sentry::authenticate($credentials, false);
+			$user = Sentry::getUser();
+			dd($user->seminar);
+		try {
+			$input = Input::all();
+
+			$credentials = array(
+				'email' => $input['email'],
+				'password' => $input['password']
+			);
+			$user = Sentry::authenticate($credentials, false);
+			$user = Sentry::getUser();
+			dd($user->seminar());
+		} catch (Exception $e) {
+			$return = array(
+				'success' => 0
+				);
+			return $return;
+			
+		}
 	}
 
 }

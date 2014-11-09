@@ -32,4 +32,15 @@ Route::any('/', 'HomeController@register');
 
 */
 
-Route::any('/', 'HomeController@login');
+Route::any('/login', 'HomeController@login');
+
+/*
+	
+	@author Noah Gansallo
+	@title Create Class/Seminar
+	@description Creating a class/seminar
+	@parameters: name, room, user_id, point1, point2, point3, point4
+
+*/
+
+Route::any('/create/class', 'SeminarController@create');
