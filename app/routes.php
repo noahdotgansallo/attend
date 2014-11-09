@@ -44,3 +44,23 @@ Route::any('/login', 'HomeController@login');
 */
 
 Route::any('/create/class', 'SeminarController@create');
+
+/*
+
+	@author Noah Gansallo
+	@title Join Class/Seminar
+	@description The current user will join the class or seminar
+
+*/
+
+Route::any('/seminar/{seminar_id}', 'SeminarController@joinSeminar');
+
+/*
+
+	@author Noah Gansallo
+	@title Created Class list
+	@description Get the list of classes that the user has created
+
+*/
+
+Route::any('/cclass', 'SeminarController@cclassList');
